@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "fallenmax.styled-components-extractor",
+        "styled-components.vscode-styled-components",
+        "wakatime.vscode-wakatime",
+        "naumovs.color-highlight",
+        "WallabyJs.quokka-vscode"
+    ]
+}
