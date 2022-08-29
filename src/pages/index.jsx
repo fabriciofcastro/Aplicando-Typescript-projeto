@@ -1,7 +1,6 @@
 import GlobalStyle from '../../styles/GlobalStyled'
 import Head from 'next/head'
-import Inicio from '../components/Home'
-
+import Container  from "../components/Container/index";
 
 export default function Home() {
   return (
@@ -11,7 +10,7 @@ export default function Home() {
       
     </Head>
       <GlobalStyle />
-      <Inicio />
+      <Container />
    </>
   )
 }

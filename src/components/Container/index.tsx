@@ -1,15 +1,23 @@
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import Cards from '../Cards'
-import {Container, Titulo, Button, Input, Section, Header, Strong, SectionImg} from './style'
+import { CardProps, Cards } from '../Cards/index'
+import { SContainer, Titulo, Button, Input, Section, Header, Strong, SectionImg } from './style'
 
 
-export default function container() {
+type ProfileResponse = {
+    name: string,
+    avatar_url: string
+}
+
+type User = {
+    name: string,
+    avatar: string,
+}
+
+export default function Container() {
    
-
     const [name, setName] = useState('')
-    const [student, setStudent] = useState([])
-    const [user, setUser] = useState( {name: '', avatar: ''})
+    const [student, setStudent] = useState< CardProps[] >([])
+    const [user, setUser] = useState<User>( {} as User)
 
     function handleAddStudant() {
         const newStudent = {
@@ -27,7 +35,7 @@ export default function container() {
    useEffect(() => {
         
     async function effectData() {
-       const responseJson = await (await fetch('https://api.github.com/users/fabriciofcastro')).json()
+       const responseJson = await (await fetch('https://api.github.com/users/fabriciofcastro')).json() as ProfileResponse
         
                 setUser({
                     name: responseJson.name,
@@ -39,7 +47,7 @@ export default function container() {
     
     return (
 
-        <Container >
+        <SContainer >
             <Header>
                  <Titulo>Lista de Presença</Titulo>
 
@@ -57,11 +65,15 @@ export default function container() {
             <Button type="button" onClick={handleAddStudant} >Adicionar</Button>
 
            {
-                student.map( student => <Cards name={student.name} time={student.time} key={ student.time}  /> )
+                student.map( student => <Cards 
+                                            name={student.name} 
+                                            time={student.time} 
+                                            key={ student.time}  
+                /> )
            }
             
 
-        </Container>
+        </SContainer>
 
     )
 }
